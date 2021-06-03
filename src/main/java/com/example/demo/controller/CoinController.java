@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.exceptions.ItemAndNumbeOfCoinsException;
 import com.example.demo.model.CoinBundle;
 import com.example.demo.model.entities.Item;
 import com.example.demo.service.CoinService;
@@ -39,11 +38,7 @@ public class CoinController {
     public CoinBundle selectProductsAndGetChange(@RequestParam() int selectedProduct,
                                                  @RequestParam() int[] numberOfCoins){
         CoinBundle numberOfCoinsResponse = null;
-        try {
-            numberOfCoinsResponse = coinService.calculateChange(selectedProduct,numberOfCoins);
-        } catch (ItemAndNumbeOfCoinsException e) {
-            e.printStackTrace();
-        }
+        numberOfCoinsResponse = coinService.calculateChange(selectedProduct,numberOfCoins);
         log.info(" numberOfCoinsResponse [{}]",numberOfCoinsResponse.getTotal());
         return numberOfCoinsResponse;
     }
